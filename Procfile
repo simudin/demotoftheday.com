@@ -1,1 +1,1 @@
-web: currency
+web: bin/demotoftheday.com
