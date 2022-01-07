@@ -19,7 +19,7 @@ func main() {
 	router, db := initializeApp()
 	defer db.Close()
 
-	log.Fatal(http.ListenAndServe(":3000", router))
+	log.Fatal(http.ListenAndServe(":" + os.Getenv("PORT"), router))
 }
 
 func initializeApp() (*chi.Mux, *postgres.Db) {
