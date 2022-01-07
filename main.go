@@ -27,7 +27,6 @@ func initializeApp() (*chi.Mux, *postgres.Db) {
 
 	db, err := postgres.New(postgres.ConnString(
 		os.Getenv("POSTGRE_HOST"),
-		os.Getenv("POSTGRE_PORT"),
 		os.Getenv("POSTGRE_USER"),
 		os.Getenv("POSTGRE_PASSWORD"),
 		os.Getenv("POSTGRE_DB_NAME")))

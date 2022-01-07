@@ -27,8 +27,8 @@ func New(connString string) (*Db, error) {
 	return &Db{db}, nil
 }
 
-func ConnString(host string, port string, user string, password string, dbName string) string {
-	return fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbName)
+func ConnString(host string, user string, password string, dbName string) string {
+	return fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable", host, user, password, dbName)
 }
 
 type Quote struct {
