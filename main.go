@@ -11,6 +11,7 @@ import (
 	"demotoftheday.com/server"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/go-chi/cors"
 	"github.com/go-chi/render"
 	"github.com/graphql-go/graphql"
 )
@@ -19,7 +20,7 @@ func main() {
 	router, db := initializeApp()
 	defer db.Close()
 
-	log.Fatal(http.ListenAndServe(":" + os.Getenv("PORT"), router))
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), router))
 }
 
 func initializeApp() (*chi.Mux, *postgres.Db) {
@@ -50,6 +51,12 @@ func initializeApp() (*chi.Mux, *postgres.Db) {
 		middleware.Compress(5),
 		middleware.StripSlashes,
 		middleware.Recoverer,
+		cors.Handler(cors.Options{
+			AllowedOrigins:   []string{"*"},
+			AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+			AllowCredentials: false,
+			MaxAge:           300, // Maximum value not ignored by any of major browsers
+		}),
 	)
 
 	router.Post("/graphql", s.GraphQL())

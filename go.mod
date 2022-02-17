@@ -9,3 +9,5 @@ require (
 	github.com/graphql-go/graphql v0.8.0
 	github.com/lib/pq v1.10.4
 )
+
+require github.com/go-chi/cors v1.2.0 // indirect
